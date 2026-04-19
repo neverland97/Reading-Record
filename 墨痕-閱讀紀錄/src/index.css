@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Noto Serif TC", serif;
+  --font-sans: "Noto Sans TC", sans-serif;
+  
+  /* Slate Black & Blues Palette */
+  --color-slate-black: #1e2024;
+  --color-serene-blue: #7d9bbd;
+  --color-azure: #007fff;
+  --color-sage-green: #7d8f69;
+  --color-sky-light: #87cefa;
+  --color-morandi-blue: #9ab3c1;
+  
+  /* Variable-driven theme colors */
+  --color-paper: var(--bg-paper);
+  --color-ink: var(--text-ink);
+  --color-accent: var(--accent-color);
+  --color-accent-soft: var(--accent-soft);
+}
+
+@layer base {
+  :root {
+    --bg-paper: #ffffff;
+    --text-ink: #000000;
+    --accent-color: #7d9bbd;
+    --accent-soft: #fafafa;
+    --bg-canvas: #ffffff;
+    --bg-mute: #f2f4f6;
+    --bg-header: #ffffff;
+  }
+
+  .dark {
+    --bg-paper: #1a1c1e;
+    --text-ink: #f1f5f9;
+    --accent-color: #9ab3c1;
+    --accent-soft: #2d333a;
+    --bg-canvas: #0a0d14;
+    --bg-mute: #1e2227;
+    --bg-header: #0a0d14;
+  }
+
+  body {
+    @apply bg-[var(--bg-canvas)] text-ink font-sans antialiased transition-colors duration-300;
+    background-image: radial-gradient(at 0% 0%, var(--color-accent-soft) 0px, transparent 50%),
+                      radial-gradient(at 100% 100%, var(--color-accent-soft) 0px, transparent 50%);
+    background-attachment: fixed;
+  }
+  
+  h1, h2, h3, h4 {
+    @apply font-serif;
+  }
+}
+
+.font-size-small { font-size: 13px; }
+.font-size-medium { font-size: 16px; }
+.font-size-large { font-size: 19px; }
+
+.font-size-small h1 { font-size: 1.25rem; }
+.font-size-medium h1 { font-size: 1.5rem; }
+.font-size-large h1 { font-size: 1.75rem; }
+
+.glass-card {
+  @apply bg-paper border border-slate-100/50 rounded-xl shadow-[0_1px_3px_rgba(0,0,0,0.01)] transition-colors;
+}
+
+.dark .glass-card {
+  @apply bg-slate-800/30 border-slate-700/40 shadow-none backdrop-blur-sm;
+  background-image: linear-gradient(to bottom right, rgba(255,255,255,0.02), transparent);
+}
+
+.input-field {
+  @apply w-full px-4 py-2 bg-[var(--bg-mute)] border border-slate-100 dark:border-slate-800/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/10 focus:border-accent transition-all text-[var(--text-ink)] placeholder:text-slate-500;
+}
+
+.dark .input-field {
+  @apply bg-slate-900/60 border-slate-800/30 text-white placeholder:text-slate-500;
+}
+
+.btn-primary {
+  @apply px-6 py-2 bg-accent text-white rounded-full hover:opacity-90 transition-all shadow-sm active:scale-95 disabled:opacity-50;
+}
+
+.btn-secondary {
+  @apply px-6 py-2 bg-white text-slate-600 rounded-full hover:bg-slate-50 transition-all active:scale-95 border border-slate-100;
+}
+
+.dark .btn-secondary {
+  @apply bg-slate-800/80 text-slate-400 hover:bg-slate-700;
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-slate-200 dark:bg-slate-700 rounded-full;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-300 dark:bg-slate-600;
+}
+
+.no-scrollbar-gutter {
+  scrollbar-gutter: stable;
+}
